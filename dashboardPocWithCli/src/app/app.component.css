@@ -1,0 +1,22 @@
+#dashboard {
+    background-color: #dfdfdf;
+    width: 100%;
+    min-width: 1200px;
+    height: 100vh;
+    min-height: 600px;
+}
+
+#action_sidebar {
+    float: left;
+    width: 20%;
+    background-color: #fff;
+    border-right: 1px solid #ccc;
+    height: 100%;
+}
+
+#content_holder {
+    float: left;
+    width: calc(80% - 1px);
+    height: 100%;
+    position: relative;
+}
