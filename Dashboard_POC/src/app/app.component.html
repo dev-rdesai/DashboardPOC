@@ -1,0 +1,37 @@
+<div class="main-container">
+  <header class="header header-6">
+    <div class="branding">
+      <a class="nav-link">
+          <!-- <clr-icon shape="plugin" class="is-inverse"></clr-icon> -->
+          <span class="title">Dashboard POC</span>
+      </a>
+  </div>
+  </header>
+  <div class="content-container">
+      <div class="content-area">
+        <div id="content_holder">
+        
+          <div id="dashboard">
+            <div id="action_sidebar">
+        
+            </div>
+        
+            <div id="content_holder">
+                
+                <gridster [options]="options">
+                    <gridster-item [item]="item" *ngFor="let item of installedModules$">
+                        <div #12>
+                            {{item.name}}
+                        </div>
+                    </gridster-item>
+                </gridster>
+        
+                <!--<app-widget *ngFor="let widget of widgetsList" [widget]="widget"></app-widget>-->
+            </div>
+        </div>
+  
+          <!--<app-widget *ngFor="let widget of widgetsList" [widget]="widget"></app-widget>-->
+      </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+[
+    {
+        "path": "moduled",
+        "location": "http://localhost:8081/moduled.umd.js",
+        "moduleName": "Moduled",
+        "description": "Payroll",
+        "registered": false
+    }
+]
