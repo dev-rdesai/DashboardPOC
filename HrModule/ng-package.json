@@ -1,0 +1,11 @@
+{
+  "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "./dist/HR",
+  "deleteDestPath": false,
+  "lib": {
+    "entryFile": "src/app/public_api.ts"
+  },
+  "whitelistedNonPeerDependencies": [
+    "."
+  ]
+}
