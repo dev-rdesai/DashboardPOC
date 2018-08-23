@@ -19,6 +19,7 @@ export class AppComponent implements OnInit, AfterViewInit{
   installedModules$: any;
   options: GridsterConfig;
   dashboard: Array<GridsterItem>;
+  clicksOnWidget: number = 0;
   @ViewChildren('12', { read: ViewContainerRef }) loadContentHere;
 
 
@@ -82,7 +83,19 @@ ngAfterViewInit(): void {
                     let factory = exports.componentFactories[exports.componentFactories.length - 1];
                     if (factory) {
                         let component = this.loadContentHere._results[i].createComponent(factory);
+                        const parentThis = this;
                         let instance = component.instance;
+                        if(moduleToEnable.shouldSendDataToContent) {
+                            this[moduleToEnable.dataInKeysAndFunctions[0].name] = 0;
+                            instance[moduleToEnable.dataInKeysAndFunctions[0].name] = this[moduleToEnable.dataInKeysAndFunctions[0].name];
+                            moduleToEnable.dataInKeysAndFunctions[0].evalFunction(instance, this[moduleToEnable.dataInKeysAndFunctions[0].name]);
+                        }
+                        if(moduleToEnable.shouldReceiveDataFromContent) {
+                            instance[moduleToEnable.dataOutKeysAndFunctions[0].name] = function(ev){
+                                parentThis.clicksOnWidget = ev;
+                                moduleToEnable.dataOutKeysAndFunctions[0].evalFunction(ev);
+                            }
+                        }
                     }
     }, (err) => this.showError(`${moduleToEnable.moduleName} could not be found, did you copy the umd file to ${moduleToEnable.location}?`, err));
   }

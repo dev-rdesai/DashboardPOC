@@ -27,17 +27,31 @@ export class ModuleService {
         return [
             {
                 "path": "modulea",
-                "location": "http://localhost:8081/modulea.umd.js",
+                "location": "http://localhost:4221/modulea.umd.js",
                 "moduleName": "ModuleaModule",
                 "description": "Payroll",
-                "registered": false
+                "registered": false,
+                shouldSendDataToContent: false,
+                dataInKeysAndFunctions: [],
+                shouldReceiveDataFromContent: false,
+                dataOutKeysAndFunctions: []
             },
             {
                 "path": "appmodule",
                 "location": "http://localhost:4221/hr-module.umd.js",
                 "moduleName": "AppModule",
                 "description": "HR",
-                "registered": false
+                "registered": false,
+                "shouldSendDataToContent": true,
+                "dataInKeysAndFunctions": [{name: 'counterVal', evalFunction: function(instance){
+                    setInterval(() => {
+                        instance.counterVal++;
+                    }, 1000);
+                }}],
+                shouldReceiveDataFromContent: true,
+                dataOutKeysAndFunctions: [{name: 'emitClickCounts', evalFunction: function(event){
+                    console.log("clicked inside HR content - " + event);
+                }}]
             }
         ];
         // return this.http.get("./assets/modules.json")

@@ -5,4 +5,8 @@ export interface ModuleData {
     rootComponent?: string;
     description: string;
     registered?: boolean;
+    shouldSendDataToContent: boolean;
+    dataInKeysAndFunctions: Array<any>;
+    shouldReceiveDataFromContent: boolean;
+    dataOutKeysAndFunctions: Array<any>;
 }
