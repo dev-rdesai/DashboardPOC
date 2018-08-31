@@ -1,0 +1,9 @@
+<div>
+    <div>
+        <h3>Type your message here</h3>
+        <mat-form-field>
+            <input matInput [(ngModel)]="data.messageToSend">
+        </mat-form-field>
+        <button mat-button mat-raised-button [mat-dialog-close]="data">Send</button>
+    </div>
+</div>

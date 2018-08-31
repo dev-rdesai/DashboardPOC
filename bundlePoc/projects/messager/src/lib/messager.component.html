@@ -1,0 +1,24 @@
+<div>
+    <h1>Messenger Widget - #{{myId}}</h1>
+    <div>
+        <button mat-button mat-raised-button (click)="openSendMessagePopup(myDialog)">Send Message</button>
+    </div>
+    <div class="message-box">
+        <ul>
+            <li *ngFor="let msg of msgList">{{msg}}</li>
+        </ul>
+    </div>
+
+    <ng-template #myDialog>
+        <h2 matDialogTitle>Type your message here</h2>
+        <mat-dialog-content>
+                <mat-form-field>
+                        <input matInput [(ngModel)]="messageToSend">
+                    </mat-form-field>
+        </mat-dialog-content>
+        <mat-dialog-actions align="end">
+            <button mat-button (click)="sendMessage()" color="primary">Send</button>
+            <button mat-button matDialogClose>Dismiss</button>
+        </mat-dialog-actions>
+    </ng-template>
+</div>
