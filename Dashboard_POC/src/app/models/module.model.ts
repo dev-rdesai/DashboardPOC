@@ -9,4 +9,13 @@ export interface ModuleData {
     dataInKeysAndFunctions: Array<any>;
     shouldReceiveDataFromContent: boolean;
     dataOutKeysAndFunctions: Array<any>;
+    loadComponentName: string;
+    instance: any;
+    x: number;
+    y: number;
+    cols: number;
+    rows: number;
+    resizeEnabled: boolean;
+    dragEnabled: boolean;
+    compactEnabled: boolean;
 }

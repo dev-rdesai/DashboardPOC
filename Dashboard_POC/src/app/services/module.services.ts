@@ -9,6 +9,10 @@ import 'rxjs/add/operator/map';
 import * as AngularCore from '@angular/core';
 import * as AngularCommon from '@angular/common';
 import * as AngularRouter from '@angular/router';
+import * as AngularForms from '@angular/forms';
+import * as AngularMaterial from '@angular/material';
+import * as AngularHttpClient from '@angular/common/http';
+//import * as AngularMaterialDialog from '@angular/material/dialog';
 // import * as AngularClarity from '@clr/angular';
 import * as BrowserAnimations from '@angular/platform-browser/animations';
 
@@ -26,6 +30,27 @@ export class ModuleService {
     loadModules(): any {
         return [
             {
+                "path": "appmodule",
+                "location": "http://localhost:4221/header.umd.js",
+                "moduleName": "HeaderModule",
+                "description": "Header",
+                "registered": false,
+                "shouldSendDataToContent": true,
+                "dataInKeysAndFunctions": [{name: 'assetsLocation', evalFunction: function(instance){
+                    instance.assetsLocation = 'http://localhost:4221/';
+                }}],
+                shouldReceiveDataFromContent: false,
+                dataOutKeysAndFunctions: [],
+                loadComponentName: 'lib-header',
+                x:0,
+                y:0,
+                cols: 50,
+                rows: 3,
+                resizeEnabled: false,
+                dragEnabled: false,
+                compactEnabled: false
+            },
+            {
                 "path": "modulea",
                 "location": "http://localhost:4221/modulea.umd.js",
                 "moduleName": "ModuleaModule",
@@ -34,7 +59,14 @@ export class ModuleService {
                 shouldSendDataToContent: false,
                 dataInKeysAndFunctions: [],
                 shouldReceiveDataFromContent: false,
-                dataOutKeysAndFunctions: []
+                dataOutKeysAndFunctions: [],
+                x:0,
+                y:3,
+                cols: 3,
+                rows: 1,
+                resizeEnabled: true,
+                dragEnabled: true,
+                compactEnabled: true
             },
             {
                 "path": "appmodule",
@@ -51,7 +83,98 @@ export class ModuleService {
                 shouldReceiveDataFromContent: true,
                 dataOutKeysAndFunctions: [{name: 'emitClickCounts', evalFunction: function(event){
                     console.log("clicked inside HR content - " + event);
-                }}]
+                }}],
+                x:1,
+                y:1,
+                cols: 3,
+                rows: 1,
+                resizeEnabled: true,
+                dragEnabled: true,
+                compactEnabled: true
+            },
+            {
+                "path": "appmodule",
+                "location": "http://localhost:4221/messager.umd.js",
+                "moduleName": "MessagerModule",
+                "description": "Messenger",
+                "registered": false,
+                "shouldSendDataToContent": true,
+                "dataInKeysAndFunctions": [{name: 'myId', evalFunction: function(instance){
+                    instance.myId = 3;
+                }}],
+                shouldReceiveDataFromContent: false,
+                dataOutKeysAndFunctions: [],
+                loadComponentName: 'lib-messager',
+                x:1,
+                y:1,
+                cols: 3,
+                rows: 1,
+                resizeEnabled: true,
+                dragEnabled: true,
+                compactEnabled: true
+            },
+            {
+                "path": "appmodule",
+                "location": "http://localhost:4221/messager.umd.js",
+                "moduleName": "MessagerModule",
+                "description": "Messenger",
+                "registered": false,
+                "shouldSendDataToContent": true,
+                "dataInKeysAndFunctions": [{name: 'myId', evalFunction: function(instance){
+                    instance.myId = 4;
+                }}],
+                shouldReceiveDataFromContent: false,
+                dataOutKeysAndFunctions: [],
+                loadComponentName: 'lib-messager',
+                x:1,
+                y:1,
+                cols: 3,
+                rows: 1,
+                resizeEnabled: true,
+                dragEnabled: true,
+                compactEnabled: true
+            },
+            {
+                "path": "appmodule",
+                "location": "http://localhost:4221/messager.umd.js",
+                "moduleName": "MessagerModule",
+                "description": "Messenger",
+                "registered": false,
+                "shouldSendDataToContent": true,
+                "dataInKeysAndFunctions": [{name: 'myId', evalFunction: function(instance){
+                    instance.myId = 5;
+                }}],
+                shouldReceiveDataFromContent: false,
+                dataOutKeysAndFunctions: [],
+                loadComponentName: 'lib-messager',
+                x:1,
+                y:1,
+                cols: 3,
+                rows: 1,
+                resizeEnabled: true,
+                dragEnabled: true,
+                compactEnabled: true
+            },
+            {
+                "path": "appmodule",
+                "location": "http://localhost:4221/messager.umd.js",
+                "moduleName": "MessagerModule",
+                "description": "Messenger",
+                "registered": false,
+                "shouldSendDataToContent": true,
+                "dataInKeysAndFunctions": [{name: 'myId', evalFunction: function(instance){
+                    instance.myId = 6;
+                }}],
+                shouldReceiveDataFromContent: false,
+                dataOutKeysAndFunctions: [],
+                loadComponentName: 'lib-messager',
+                x:1,
+                y:1,
+                cols: 3,
+                rows: 1,
+                resizeEnabled: true,
+                dragEnabled: true,
+                compactEnabled: true
             }
         ];
         // return this.http.get("./assets/modules.json")
@@ -69,6 +192,7 @@ export class ModuleService {
                     '@angular/common': AngularCommon,
                     '@angular/router': AngularRouter,
                     '@angular/platform-browser/animations': BrowserAnimations,
+                    '@angular/forms': AngularForms
                     // '@clr/angular': AngularClarity
                 };
 
@@ -90,6 +214,10 @@ export class ModuleService {
         SystemJS.set('@angular/common', SystemJS.newModule(AngularCommon));
         SystemJS.set('@angular/router', SystemJS.newModule(AngularRouter));
         SystemJS.set('@angular/platform-browser/animations', SystemJS.newModule(BrowserAnimations));
+        SystemJS.set('@angular/forms', SystemJS.newModule(AngularForms));
+        SystemJS.set('@angular/material', SystemJS.newModule(AngularMaterial));
+        SystemJS.set('@angular/common/http', SystemJS.newModule(AngularHttpClient));
+        //SystemJS.set('@angular/material/dialog', SystemJS.newModule(AngularMaterialDialog));
         //SystemJS.set('@clr/angular', SystemJS.newModule(AngularClarity));
 
         // now, import the new module

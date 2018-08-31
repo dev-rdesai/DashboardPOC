@@ -1,3 +1,7 @@
+.main-container {
+    height: 100vh;
+}
+
 #dashboard {
     background-color: #dfdfdf;
     width: 100%;

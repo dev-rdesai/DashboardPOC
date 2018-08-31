@@ -1,11 +1,12 @@
 <div class="main-container">
-  <header class="header header-6">
+  <!-- <header class="header header-6">
     <div class="branding">
       <a class="nav-link">
-          <!-- <clr-icon shape="plugin" class="is-inverse"></clr-icon> -->
+          
           <h1 class="title">Dashboard POC</h1>
       </a>
       <div>Clicked {{clicksOnWidget}} time(s) inside HR Widget's Content.</div>
+      <app-portal-component></app-portal-component>
   </div>
   </header>
   <div class="content-container">
@@ -17,22 +18,20 @@
         
             </div>
         
-            <div id="content_holder">
+            <div id="content_holder"> -->
                 
                 <gridster [options]="options">
                     <gridster-item [item]="item" *ngFor="let item of installedModules$">
-                        <div #12>
+                        <div #12 >
                             {{item.name}}
                         </div>
                     </gridster-item>
                 </gridster>
         
-                <!--<app-widget *ngFor="let widget of widgetsList" [widget]="widget"></app-widget>-->
-            </div>
+            <!-- </div>
         </div>
-  
-          <!--<app-widget *ngFor="let widget of widgetsList" [widget]="widget"></app-widget>-->
+
       </div>
       </div>
-  </div>
+  </div> -->
 </div>

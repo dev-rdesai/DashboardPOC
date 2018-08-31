@@ -42,6 +42,11 @@ export class AppComponent implements OnInit, AfterViewInit{
 
   ngOnInit() {
     this.options = {
+        outerMargin: false,
+        gridType: 'fixed',
+        fixedColWidth: 25,
+        fixedRowHeight: 25,
+        margin: 5,
         itemChangeCallback: AppComponent.itemChange,
         itemResizeCallback: AppComponent.itemResize,
         swap: true,
@@ -75,12 +80,28 @@ ngAfterViewInit(): void {
       this.dashboard.push({ cols: 2, rows: 3, y: 1, x: 1 });
   }
 
+  broadcastMessageGlobally(senderId, msg) {
+    this.installedModules$.forEach((mod,i) =>{
+        if(mod.instance.onMessageReceived) {
+            mod.instance.onMessageReceived.call(mod.instance, senderId, msg);
+        }
+    });
+  }
+
   private registerRoute(moduleToEnable: ModuleData, i:any){
     // load up the umd file and register the route whenever succeeded.
     this.moduleService.loadModuleSystemJS(moduleToEnable).then((exports) => {
 
        let moduleRef = exports.ngModuleFactory.create(this.injector);
-                    let factory = exports.componentFactories[exports.componentFactories.length - 1];
+                    let factory;
+                    if(moduleToEnable.loadComponentName)
+                        exports.componentFactories.forEach(element => {
+                            if(element.selector == moduleToEnable.loadComponentName) {
+                                factory = element;
+                            }
+                        });
+                    else 
+                        factory = exports.componentFactories[exports.componentFactories.length - 1];
                     if (factory) {
                         let component = this.loadContentHere._results[i].createComponent(factory);
                         const parentThis = this;
@@ -96,6 +117,8 @@ ngAfterViewInit(): void {
                                 moduleToEnable.dataOutKeysAndFunctions[0].evalFunction(ev);
                             }
                         }
+                        instance.broadcastMessageGlobally = parentThis.broadcastMessageGlobally.bind(parentThis);
+                        moduleToEnable.instance = instance;
                     }
     }, (err) => this.showError(`${moduleToEnable.moduleName} could not be found, did you copy the umd file to ${moduleToEnable.location}?`, err));
   }
